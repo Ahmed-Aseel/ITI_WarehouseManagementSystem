@@ -1,11 +1,11 @@
 ﻿using WarehouseManagementSystem.Data.Entities.Inventory;
-using WarehouseManagementSystem.Data.Entities.Transfers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseManagementSystem.Data.Entities.Permissions;
 
 namespace WarehouseManagementSystem.Data.Entities.Core
 {

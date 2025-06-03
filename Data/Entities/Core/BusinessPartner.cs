@@ -38,9 +38,6 @@ namespace WarehouseManagementSystem.Data.Entities.Core
         [MaxLength(20)]
         public string? Phone { get; set; }
 
-        [MaxLength(20)]
-        public string? Fax { get; set; }
-
         [Required]
         [MaxLength(20)]
         public string? Mobile { get; set; }
@@ -48,6 +45,9 @@ namespace WarehouseManagementSystem.Data.Entities.Core
         [Required]
         [MaxLength(100)]
         public string? Email { get; set; }
+
+        [MaxLength(20)]
+        public string? Fax { get; set; }
 
         [MaxLength(100)]
         public string? Website { get; set; }

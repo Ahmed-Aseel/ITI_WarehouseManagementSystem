@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WarehouseManagementSystem.Data.Entities.Transfers;
 
 namespace WarehouseManagementSystem.Data.Entities.Core
 {
@@ -17,8 +16,7 @@ namespace WarehouseManagementSystem.Data.Entities.Core
         {
             Inventories = new HashSet<InventoryItem>();
             Permissions = new HashSet<Permission>();
-            OutgoingTransfers = new HashSet<Transfer>();
-            IncomingTransfers = new HashSet<Transfer>();
+            Transfers = new HashSet<TransferPermission>();
         }
 
         [Key]
@@ -40,7 +38,6 @@ namespace WarehouseManagementSystem.Data.Entities.Core
         // Navigation Properties
         public virtual ICollection<InventoryItem> Inventories { get; set; }
         public virtual ICollection<Permission> Permissions { get; set; }
-        public virtual ICollection<Transfer> OutgoingTransfers { get; set; }
-        public virtual ICollection<Transfer> IncomingTransfers { get; set; }
+        public virtual ICollection<TransferPermission> Transfers { get; set; }
     }
 }

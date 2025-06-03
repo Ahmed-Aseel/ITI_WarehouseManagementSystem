@@ -11,17 +11,19 @@ namespace WarehouseManagementSystem.Data.Entities.Inventory
 {
     public class InventoryItem
     {
-        [ForeignKey("Warehouse")]
+        [ForeignKey(nameof(Warehouse))]
         public int WarehouseID { get; set; }
 
         [MaxLength(30)]
-        [ForeignKey("Item")]
+        [ForeignKey(nameof(Item))]
         public string? ItemCode { get; set; }
 
         [Required]
+        [Column(TypeName = "date")]
         public DateTime? ProductionDate { get; set; }
 
         [Required]
+        [Column(TypeName = "date")]
         public DateTime? ExpiryDate { get; set; }
 
         [Required]

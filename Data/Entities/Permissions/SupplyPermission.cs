@@ -11,20 +11,22 @@ namespace WarehouseManagementSystem.Data.Entities.Permissions
 {
     public class SupplyPermission
     {
+        public SupplyPermission()
+        {
+            // Initialize permission type to Supply
+            Permission = new Permission
+            {
+                Type = PermissionType.Supply
+            };
+        }
+
         [Key]
-        [ForeignKey("Permission")]
+        [ForeignKey(nameof(Permission))]
         [MaxLength(30)]
         public string? PermissionNumber { get; set; }
 
         [Required]
-        public DateTime? ProductionDate { get; set; } = DateTime.Now;
-
-        [Required]
-        [Range(1, int.MaxValue)]
-        public int ExpiryDuration { get; set; } // in days
-
-        [Required]
-        [ForeignKey("BusinessPartner")]
+        [ForeignKey(nameof(Supplier))]
         public int SupplierID { get; set; }
 
         // Navigation properties

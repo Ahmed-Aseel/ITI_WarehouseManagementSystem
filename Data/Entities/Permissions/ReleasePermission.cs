@@ -11,13 +11,22 @@ namespace WarehouseManagementSystem.Data.Entities.Permissions
 {
     public class ReleasePermission
     {
+        public ReleasePermission()
+        {
+            // Initialize permission type to Release
+            Permission = new Permission()
+            {
+                Type = PermissionType.Release
+            };
+        }
+
         [Key]
-        [ForeignKey("Permission")]
+        [ForeignKey(nameof(Permission))]
         [MaxLength(30)]
         public string? PermissionNumber { get; set; }
 
         [Required]
-        [ForeignKey("BusinessPartner")]
+        [ForeignKey(nameof(Customer))]
         public int CustomerID { get; set; }
 
         // Navigation properties

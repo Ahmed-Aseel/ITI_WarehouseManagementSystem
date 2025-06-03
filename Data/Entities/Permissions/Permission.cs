@@ -1,5 +1,4 @@
 ﻿using WarehouseManagementSystem.Data.Entities.Core;
-using WarehouseManagementSystem.Data.Entities.Transfers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,11 +13,11 @@ namespace WarehouseManagementSystem.Data.Entities.Permissions
     public enum PermissionType : byte
     {
         Supply,
-        Dispense,
+        Release,
         Transfer
     }
 
-    [Index(nameof(PermissionDate), IsUnique = true)] // Fix for CS0592 and CS0618
+    [Index(nameof(PermissionDate))] // Fix for CS0592 and CS0618
     public class Permission
     {
         public Permission()
@@ -31,17 +30,18 @@ namespace WarehouseManagementSystem.Data.Entities.Permissions
         public string? PermissionNumber { get; set; }
 
         [Required]
-        public DateTime? PermissionDate { get; set; } = DateTime.Now;
+        [Column(TypeName = "date")]
+        public DateTime? PermissionDate { get; set; } = DateTime.Today.Date;
 
         [Required]
         public PermissionType Type { get; set; }
 
         [Required]
-        [ForeignKey("Warehouse")]
-        public int WarehouseID { get; set; }
+        [ForeignKey(nameof(MainWarehouse))]
+        public int MainWarehouseID { get; set; } // For Supply/Release/Transfer (Source)
 
         // Navigation properties
-        public virtual Warehouse? Warehouse { get; set; }
+        public virtual Warehouse? MainWarehouse { get; set; }
         public virtual SupplyPermission? SupplyPermission { get; set; }
         public virtual ReleasePermission? ReleasePermission { get; set; }
         public virtual TransferPermission? TransferPermission { get; set; }

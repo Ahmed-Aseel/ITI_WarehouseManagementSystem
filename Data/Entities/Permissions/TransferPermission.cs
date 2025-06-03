@@ -5,33 +5,32 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WarehouseManagementSystem.Data.Entities.Transfers;
+using WarehouseManagementSystem.Data.Entities.Core;
 
 namespace WarehouseManagementSystem.Data.Entities.Permissions
 {
-    public enum TransferDirection : byte
-    {
-        Outgoing,
-        Incoming
-    }
-
     public class TransferPermission
     {
+        public TransferPermission()
+        {
+            // Initialize the permission type to Transfer
+            Permission = new Permission()
+            {
+                Type = PermissionType.Transfer
+            };
+        }
+
         [Key]
-        [ForeignKey("Permission")]
+        [ForeignKey(nameof(Permission))]
         [MaxLength(30)]
         public string? PermissionNumber { get; set; }
 
         [Required]
-        public TransferDirection Direction { get; set; }
-
-        [Required]
-        [ForeignKey("Transfer")]
-        [MaxLength(30)]
-        public string? TransferNumber { get; set; }
+        [ForeignKey(nameof(DestWarehouse))]
+        public int DestWarehouseID { get; set; } // For Transfer (Destination)
 
         // Navigation properties
-        public virtual Transfer? Transfer { get; set; }
+        public virtual Warehouse? DestWarehouse { get; set; }
         public virtual Permission? Permission { get; set; }
     }
 }
